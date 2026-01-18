@@ -1,0 +1,513 @@
+:root {
+    /* Color Palette - Premium Glass Dark Red */
+    --bg-base: #050505;
+    --bg-surface: rgba(20, 20, 20, 0.6);
+    --bg-elevated: rgba(40, 40, 40, 0.4);
+    --bg-glass: rgba(255, 255, 255, 0.05);
+
+    --text-base: #ffffff;
+    --text-subdued: #b3b3b3;
+
+    --primary: #E50914;
+    /* Cinematic Red */
+    --primary-hover: #ff2b36;
+    --accent: #910000;
+
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pulse {
+    0% {
+        background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    50% {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    100% {
+        background-color: rgba(255, 255, 255, 0.02);
+    }
+}
+
+.skeleton {
+    animation: pulse 1.5s infinite ease-in-out;
+    border-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-base);
+    font-family: 'Outfit', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Ambient Glow Background - Simplified for performance */
+    background: radial-gradient(circle at 0% 0%, rgba(229, 9, 20, 0.1) 0%, transparent 40%),
+        var(--bg-base);
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 1fr 90px;
+    height: 100vh;
+    gap: 12px;
+    padding: 12px;
+}
+
+/* Sidebar Styling with Glassmorphism */
+aside {
+    grid-row: 1 / 2;
+    background: var(--bg-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+    box-shadow: var(--glass-shadow);
+}
+
+.nav-section {
+    padding: 24px;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    color: var(--text-subdued);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: var(--text-base);
+}
+
+.nav-item i {
+    font-size: 24px;
+}
+
+.library-section {
+    flex-grow: 1;
+    padding: 0 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.library-list {
+    margin-top: 15px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.library-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    background: transparent;
+}
+
+.library-item:hover {
+    background: var(--bg-glass);
+}
+
+.library-item img {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.library-item-info {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.library-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.library-item-artist {
+    font-size: 12px;
+    color: var(--text-subdued);
+}
+
+/* Main Content with Glass Gradients */
+main {
+    grid-row: 1 / 2;
+    background: linear-gradient(180deg, rgba(145, 0, 0, 0.2) 0%, var(--bg-surface) 60%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: var(--glass-border);
+    border-radius: 12px;
+    overflow-y: auto;
+    padding: 32px;
+    position: relative;
+    scroll-behavior: smooth;
+    box-shadow: var(--glass-shadow);
+}
+
+main::-webkit-scrollbar {
+    width: 12px;
+}
+
+main::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    position: sticky;
+    top: -32px;
+    padding: 16px 0;
+    background: transparent;
+    z-index: 10;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: var(--bg-glass);
+    backdrop-filter: blur(4px);
+    padding: 10px 20px;
+    border-radius: 500px;
+    width: 100%;
+    max-width: 400px;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: border-color var(--transition-fast);
+}
+
+.search-container:focus-within {
+    border-color: var(--primary);
+}
+
+.search-container input {
+    background: none;
+    border: none;
+    color: var(--text-base);
+    width: 100%;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.search-container input:focus {
+    outline: none;
+}
+
+.shelf-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: var(--bg-glass);
+    padding: 20px;
+    border-radius: 16px;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+    cursor: pointer;
+    position: relative;
+    border: var(--glass-border);
+    will-change: transform, background-color;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-8px);
+    border-color: rgba(229, 9, 20, 0.5);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.card:hover .card-img {
+    transform: scale(1.05);
+}
+
+.play-btn-overlay {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 52px;
+    height: 52px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all var(--transition-fast);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover .play-btn-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.card-desc {
+    font-size: 14px;
+    color: var(--text-subdued);
+}
+
+/* Glass Player Bar - Fixed height and promoted to its own layer */
+.player-bar {
+    grid-column: 1 / 3;
+    background: rgba(20, 20, 20, 0.85);
+    /* Slightly more opaque for better performance */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: var(--glass-border);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 0 24px;
+    box-shadow: var(--glass-shadow);
+    will-change: transform;
+}
+
+.current-track {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.track-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.track-info .title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.track-info .artist {
+    font-size: 12px;
+    color: var(--text-subdued);
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-buttons {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.btn-control {
+    background: none;
+    border: none;
+    color: var(--text-subdued);
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-control:hover {
+    color: var(--text-base);
+    transform: scale(1.1);
+}
+
+.btn-play-pause {
+    width: 36px;
+    height: 36px;
+    background-color: var(--text-base);
+    color: var(--bg-base);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.btn-play-pause:hover {
+    transform: scale(1.1);
+}
+
+.btn-heart.liked {
+    color: var(--primary);
+    filter: drop-shadow(0 0 5px var(--primary));
+}
+
+.progress-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-subdued);
+}
+
+.progress-bar {
+    flex-grow: 1;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--text-base);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.progress-bar:hover .progress-fill {
+    background-color: var(--primary);
+}
+
+.volume-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}
+
+.volume-bar {
+    width: 100px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .app-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 100px 70px;
+        padding: 0;
+        gap: 0;
+    }
+
+    aside {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: flex !important;
+        grid-row: 3;
+        background: var(--bg-surface);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        justify-content: space-around;
+        align-items: center;
+        border-top: var(--glass-border);
+        z-index: 100;
+    }
+
+    main {
+        padding: 20px;
+        border-radius: 0;
+        border: none;
+    }
+
+    .player-bar {
+        grid-column: 1;
+        grid-row: 2;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+    }
+
+    .volume-controls {
+        display: none;
+    }
+
+    .shelf-title {
+        font-size: 24px;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+    }
+}
+
+.mobile-nav {
+    display: none;
+}

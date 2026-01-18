@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone - Premium Experience</title>
+    <meta name="description" content="Una experiencia musical premium inspirada en Spotify.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside>
+            <nav class="nav-section">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <i data-lucide="home"></i>
+                        <span>Inicio</span>
+                    </li>
+                    <li class="nav-item">
+                        <i data-lucide="search"></i>
+                        <span>Buscar</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="library-section">
+                <div class="nav-item">
+                    <i data-lucide="library"></i>
+                    <span>Tu biblioteca</span>
+                </div>
+                <ul class="library-list" id="library-list">
+                    <!-- Liked songs will appear here -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <header class="header">
+                <div class="search-container">
+                    <i data-lucide="search" size="18"></i>
+                    <input type="text" id="search-input" placeholder="¿Qué quieres escuchar?">
+                </div>
+                <div class="user-profile">
+                </div>
+            </header>
+
+            <section class="shelf">
+                <h2 class="shelf-title">Hecho para ti</h2>
+                <div class="card-grid" id="featured-grid">
+                    <!-- Cards will be injected by JS -->
+                </div>
+            </section>
+
+            <section class="shelf" style="margin-top: 40px;">
+                <h2 class="shelf-title">Escuchado recientemente</h2>
+                <div class="card-grid" id="recent-grid">
+                    <!-- Cards will be injected by JS -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Player Bar -->
+        <footer class="player-bar">
+            <div class="current-track">
+                <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=100&h=100&fit=crop"
+                    alt="Track Cover" class="track-img">
+                <div class="track-info">
+                    <div class="title">Midnight City</div>
+                    <div class="artist">M83</div>
+                </div>
+                <button class="btn-control btn-heart" id="main-heart"><i data-lucide="heart" size="18"></i></button>
+            </div>
+
+            <div class="player-controls">
+                <div class="control-buttons">
+                    <button class="btn-control"><i data-lucide="shuffle" size="20"></i></button>
+                    <button class="btn-control"><i data-lucide="skip-back" size="24"></i></button>
+                    <button class="btn-play-pause"><i data-lucide="play" fill="currentColor"></i></button>
+                    <button class="btn-control"><i data-lucide="skip-forward" size="24"></i></button>
+                    <button class="btn-control"><i data-lucide="repeat" size="20"></i></button>
+                </div>
+                <div class="progress-container">
+                    <span>1:24</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <span>4:03</span>
+                </div>
+            </div>
+
+            <div class="volume-controls">
+                <i data-lucide="mic-2" size="18" class="btn-control"></i>
+                <i data-lucide="list-music" size="18" class="btn-control"></i>
+                <i data-lucide="speaker" size="18" class="btn-control"></i>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="volume-2" size="18"></i>
+                    <div class="volume-bar" id="volume-bar">
+                        <div class="progress-fill" id="volume-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Mobile Bottom Nav -->
+        <nav class="mobile-nav">
+            <div class="nav-item active" style="flex-direction: column; gap: 4px; padding: 0; background: none;">
+                <i data-lucide="home" size="22"></i>
+                <span style="font-size: 11px;">Home</span>
+            </div>
+            <div class="nav-item" style="flex-direction: column; gap: 4px; padding: 0; background: none;">
+                <i data-lucide="search" size="22"></i>
+                <span style="font-size: 11px;">Search</span>
+            </div>
+            <div class="nav-item" style="flex-direction: column; gap: 4px; padding: 0; background: none;">
+                <i data-lucide="library" size="22"></i>
+                <span style="font-size: 11px;">Library</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
